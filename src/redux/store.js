@@ -1,7 +1,9 @@
 import initialState from './initialState';
 import { createStore, combineReducers } from 'redux';
-
-const subreducers = {};
+import postsReducer from './postsRedux';
+const subreducers = {
+  posts: postsReducer,
+};
 
 const reducer = combineReducers(subreducers);
 
