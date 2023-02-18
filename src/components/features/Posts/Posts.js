@@ -18,17 +18,23 @@ const Posts = () => {
           </Link>
         </Col>
       </Row>
-      <Row className='justify-content-between m-0 gap={3}'>
+      <Row className='justify-content-between p-2'>
         {posts.map((post) => (
-          <Col className='p-2 col-md-4 col-12'>
+          <Col className='col-md-4 col-12'>
             <Card>
               <Card.Body>
                 <Card.Title>{post.title}</Card.Title>
+                <Card.Text className='m-0'>
+                  <strong>Author: </strong>
+                  {post.author}
+                </Card.Text>
+                <Card.Text>
+                  <strong>Published: </strong>
+                  {post.publishedDate}
+                </Card.Text>
                 <Card.Text>{post.shortDescription}</Card.Text>
-                <Card.Text>{post.publishedDate}</Card.Text>
-                <Card.Text>{post.author}</Card.Text>
                 <Link key={post.id} to={'/post/' + post.id}>
-                  <Button variant='primary'>Go somewhere</Button>
+                  <Button variant='primary'>Read more</Button>
                 </Link>
               </Card.Body>
             </Card>
