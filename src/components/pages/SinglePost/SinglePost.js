@@ -1,6 +1,6 @@
-import styles from './Post.module.scss';
+import styles from './SinglePost.module.scss';
 import PageTitle from '../../views/PageTitle/PageTitle';
-const Post = () => {
+const SinglePost = () => {
   return (
     <div className={styles.about}>
       <PageTitle>POST</PageTitle>
@@ -9,4 +9,4 @@ const Post = () => {
   );
 };
 
-export default Post;
+export default SinglePost;
