@@ -1,8 +1,7 @@
-import styles from './PostEdit.module.scss';
 import PageTitle from '../../views/PageTitle/PageTitle';
 const PostEdit = () => {
   return (
-    <div className={styles.about}>
+    <div>
       <PageTitle>POST EDIT</PageTitle>
       <p>Lorem Ipsum</p>
     </div>

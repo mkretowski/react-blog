@@ -1,8 +1,7 @@
-import styles from './About.module.scss';
 import PageTitle from '../../views/PageTitle/PageTitle';
 const About = () => {
   return (
-    <div className={styles.about}>
+    <div>
       <PageTitle>ABOUT</PageTitle>
       <p>Lorem Ipsum</p>
     </div>

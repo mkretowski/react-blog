@@ -1,8 +1,7 @@
-import styles from './PostAdd.module.scss';
 import PageTitle from '../../views/PageTitle/PageTitle';
 const PostAdd = () => {
   return (
-    <div className={styles.about}>
+    <div>
       <PageTitle>POST ADD</PageTitle>
       <p>Lorem Ipsum</p>
     </div>

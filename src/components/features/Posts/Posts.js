@@ -18,9 +18,9 @@ const Posts = () => {
           </Link>
         </Col>
       </Row>
-      <Row className='justify-content-between p-2'>
+      <Row className='p-2'>
         {posts.map((post) => (
-          <Col className='col-md-4 col-12'>
+          <Col key={post.id} className='col-md-4 col-12 pt-2 pb-2'>
             <Card>
               <Card.Body>
                 <Card.Title>{post.title}</Card.Title>

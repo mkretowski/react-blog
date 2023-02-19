@@ -1,8 +1,7 @@
-import styles from './NotFound.module.scss';
 import PageTitle from '../../views/PageTitle/PageTitle';
 const NotFound = () => {
   return (
-    <div className={styles.notfound}>
+    <div>
       <PageTitle>404 NOT FOUND</PageTitle>
     </div>
   );
