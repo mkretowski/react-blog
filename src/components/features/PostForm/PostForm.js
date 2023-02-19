@@ -1,26 +1,20 @@
 import Form from 'react-bootstrap/Form';
 import { Button, Col } from 'react-bootstrap';
 import { useState } from 'react';
-import { useDispatch } from 'react-redux';
-import { useNavigate } from 'react-router-dom';
-import { addPost } from '../../../redux/postsRedux';
+
 import PageTitle from '../../views/PageTitle/PageTitle';
-const AddPostForm = () => {
-  const dispatch = useDispatch();
-  const [title, setTitle] = useState('');
-  const [author, setAuthor] = useState('');
-  const [publishedDate, setPublishedDate] = useState('');
-  const [shortDescription, setShortDescription] = useState('');
-  const [content, setContent] = useState('');
-  const navigate = useNavigate();
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    dispatch(addPost({ title, author, publishedDate, shortDescription, content }));
-    navigate('/');
+const PostForm = ({ action, actionText, ...props }) => {
+  const [title, setTitle] = useState(props.title || '');
+  const [author, setAuthor] = useState(props.author || '');
+  const [publishedDate, setPublishedDate] = useState(props.publishedDate || '');
+  const [shortDescription, setShortDescription] = useState(props.shortDescription || '');
+  const [content, setContent] = useState(props.content || '');
+  const handleSubmit = () => {
+    action({ title, author, publishedDate, shortDescription, content });
   };
   return (
     <Col className='col-md-8 col-12 offset-md-2 text-md-start text-center p-2'>
-      <PageTitle>Add Post</PageTitle>
+      <PageTitle>{actionText}</PageTitle>
       <Form onSubmit={handleSubmit}>
         <Form.Group className='mb-3 col-md-6 col-12' controlId='title'>
           <Form.Label>Title</Form.Label>
@@ -70,11 +64,11 @@ const AddPostForm = () => {
           />
         </Form.Group>
         <Button variant='primary' type='submit'>
-          Submit
+          {actionText}
         </Button>
       </Form>
     </Col>
   );
 };
 
-export default AddPostForm;
+export default PostForm;

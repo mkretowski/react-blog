@@ -2,7 +2,7 @@ import PageTitle from '../../views/PageTitle/PageTitle';
 import { useSelector, useDispatch } from 'react-redux';
 import { getPostById } from '../../../redux/postsRedux';
 import { useParams } from 'react-router';
-import { Navigate } from 'react-router-dom';
+import { Navigate, Link } from 'react-router-dom';
 import { Row, Col, Button, Modal } from 'react-bootstrap';
 import { removePost } from '../../../redux/postsRedux';
 import { useState } from 'react';
@@ -38,7 +38,9 @@ const SinglePost = () => {
           <p>{postData.shortDescription}</p>
         </Col>
         <Col className='col-md-3 col-12 offset-md-2 text-md-end text-center p-2'>
-          <Button variant='outline-info'>Edit</Button>{' '}
+          <Link key={postId} to={'/post/edit/' + postId}>
+            <Button variant='primary'>Edit</Button>
+          </Link>{' '}
           <Button variant='outline-danger' onClick={handleShowModal}>
             Delete
           </Button>
