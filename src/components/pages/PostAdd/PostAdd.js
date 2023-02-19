@@ -1,11 +1,6 @@
-import PageTitle from '../../views/PageTitle/PageTitle';
+import AddPostForm from '../../features/AddPostForm/AddPostForm';
 const PostAdd = () => {
-  return (
-    <div>
-      <PageTitle>POST ADD</PageTitle>
-      <p>Lorem Ipsum</p>
-    </div>
-  );
+  return <AddPostForm />;
 };
 
 export default PostAdd;

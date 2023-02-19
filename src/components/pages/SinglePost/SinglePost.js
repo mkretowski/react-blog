@@ -24,7 +24,7 @@ const SinglePost = () => {
   if (!postData) return <Navigate to='/' />;
   return (
     <>
-      <Row className='m-0 p-2 direction-reverse'>
+      <Row className='m-0 p-2'>
         <Col className='col-md-3 col-12 offset-md-2 text-md-start text-center p-0'>
           <PageTitle>{postData.title}</PageTitle>
           <p className='mb-0'>
