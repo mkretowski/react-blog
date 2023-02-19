@@ -35,7 +35,7 @@ const SinglePost = () => {
             <strong>Published: </strong>
             {postData.publishedDate}
           </p>
-          <p>{postData.shortDescription}</p>
+          <p>{postData.content}</p>
         </Col>
         <Col className='col-md-3 col-12 offset-md-2 text-md-end text-center p-2'>
           <Link key={postId} to={'/post/edit/' + postId}>
