@@ -1,12 +1,16 @@
 import Form from 'react-bootstrap/Form';
 import { Button, Col } from 'react-bootstrap';
-import { useState } from 'react';
-
 import PageTitle from '../../views/PageTitle/PageTitle';
+import React, { useState } from 'react';
+import ReactQuill from 'react-quill';
+import 'react-quill/dist/quill.snow.css';
+import DatePicker from 'react-datepicker';
+import 'react-datepicker/dist/react-datepicker.css';
+
 const PostForm = ({ action, actionText, ...props }) => {
   const [title, setTitle] = useState(props.title || '');
   const [author, setAuthor] = useState(props.author || '');
-  const [publishedDate, setPublishedDate] = useState(props.publishedDate || '');
+  const [publishedDate, setPublishedDate] = useState(props.publishedDate || new Date());
   const [shortDescription, setShortDescription] = useState(props.shortDescription || '');
   const [content, setContent] = useState(props.content || '');
   const handleSubmit = () => {
@@ -36,12 +40,7 @@ const PostForm = ({ action, actionText, ...props }) => {
         </Form.Group>
         <Form.Group className='mb-3 col-md-6 col-12' controlId='date'>
           <Form.Label>Published</Form.Label>
-          <Form.Control
-            type='text'
-            placeholder='Enter date'
-            value={publishedDate}
-            onChange={(e) => setPublishedDate(e.target.value)}
-          />
+          <DatePicker selected={publishedDate} onChange={(date) => setPublishedDate(date)} />
         </Form.Group>
         <Form.Group className='mb-3' controlId='shortDescription'>
           <Form.Label>Short description</Form.Label>
@@ -55,13 +54,7 @@ const PostForm = ({ action, actionText, ...props }) => {
         </Form.Group>
         <Form.Group className='mb-3' controlId='mainContent'>
           <Form.Label>Main content</Form.Label>
-          <Form.Control
-            as='textarea'
-            rows={10}
-            placeholder='Leave a comment here'
-            value={content}
-            onChange={(e) => setContent(e.target.value)}
-          />
+          <ReactQuill theme='snow' value={content} onChange={setContent} placeholder='Leave a comment here' />
         </Form.Group>
         <Button variant='primary' type='submit'>
           {actionText}

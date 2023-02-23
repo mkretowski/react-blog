@@ -6,6 +6,7 @@ import { Navigate, Link } from 'react-router-dom';
 import { Row, Col, Button, Modal } from 'react-bootstrap';
 import { removePost } from '../../../redux/postsRedux';
 import { useState } from 'react';
+import { dateToStr } from '../../../utils/dateToStr';
 const SinglePost = () => {
   const dispatch = useDispatch();
   const [showModal, setShowModal] = useState(false);
@@ -33,9 +34,9 @@ const SinglePost = () => {
           </p>
           <p>
             <strong>Published: </strong>
-            {postData.publishedDate}
+            {dateToStr(postData.publishedDate)}
           </p>
-          <p>{postData.content}</p>
+          <p dangerouslySetInnerHTML={{ __html: postData.content }} />
         </Col>
         <Col className='col-md-3 col-12 offset-md-2 text-md-end text-center p-2'>
           <Link key={postId} to={'/post/edit/' + postId}>
