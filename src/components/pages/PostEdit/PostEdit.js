@@ -12,7 +12,7 @@ const PostEdit = () => {
   const postData = useSelector((state) => getPostById(state, postId));
   const handleSubmit = (post) => {
     dispatch(editPost({ ...post, id }));
-    navigate('/');
+    navigate('/post/' + postId);
   };
   if (!postData) return <Navigate to='/' />;
   return <PostForm action={handleSubmit} actionText='Edit Post' {...postData} />;

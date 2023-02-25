@@ -1,5 +1,10 @@
+import { Col } from 'react-bootstrap';
 const PageTitle = (props) => {
-  return <h1>{props.children}</h1>;
+  return (
+    <Col className='p-0'>
+      <h1>{props.children}</h1>
+    </Col>
+  );
 };
 
 export default PageTitle;

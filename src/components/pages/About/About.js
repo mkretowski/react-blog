@@ -1,10 +1,10 @@
 import PageTitle from '../../views/PageTitle/PageTitle';
+import { Row } from 'react-bootstrap';
 const About = () => {
   return (
-    <div>
-      <PageTitle>ABOUT</PageTitle>
-      <p>Lorem Ipsum</p>
-    </div>
+    <Row className='m-0 p-2'>
+      <PageTitle>About</PageTitle>
+    </Row>
   );
 };
 

@@ -7,6 +7,7 @@ import { Row, Col, Button, Modal } from 'react-bootstrap';
 import { removePost } from '../../../redux/postsRedux';
 import { useState } from 'react';
 import { dateToStr } from '../../../utils/dateToStr';
+
 const SinglePost = () => {
   const dispatch = useDispatch();
   const [showModal, setShowModal] = useState(false);
@@ -22,6 +23,7 @@ const SinglePost = () => {
     e.preventDefault();
     dispatch(removePost(postId));
   };
+
   if (!postData) return <Navigate to='/' />;
   return (
     <>
@@ -32,16 +34,20 @@ const SinglePost = () => {
             <strong>Author: </strong>
             {postData.author}
           </p>
-          <p>
+          <p className='mb-0'>
             <strong>Published: </strong>
             {dateToStr(postData.publishedDate)}
+          </p>
+          <p>
+            <strong>Category: </strong>
+            {postData.category}
           </p>
           <p dangerouslySetInnerHTML={{ __html: postData.content }} />
         </Col>
         <Col className='col-md-3 col-12 offset-md-2 text-md-end text-center p-2'>
-          <Link key={postId} to={'/post/edit/' + postId}>
-            <Button variant='primary'>Edit</Button>
-          </Link>{' '}
+          <Button variant='primary' as={Link} to={'/post/edit/' + postId}>
+            Edit
+          </Button>{' '}
           <Button variant='outline-danger' onClick={handleShowModal}>
             Delete
           </Button>

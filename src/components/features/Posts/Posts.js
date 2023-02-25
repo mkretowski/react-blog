@@ -1,23 +1,11 @@
-import PageTitle from '../../views/PageTitle/PageTitle';
-import { useSelector } from 'react-redux';
-import { getAllPosts } from '../../../redux/postsRedux';
 import { Link } from 'react-router-dom';
 import { Card, Button, Row, Col } from 'react-bootstrap';
 import { dateToStr } from '../../../utils/dateToStr';
-const Posts = () => {
-  const posts = useSelector(getAllPosts);
+
+const Posts = ({ posts, ...props }) => {
+  if (posts.length === 0) return <Col className='text-center'>No posts to show...</Col>;
   return (
     <>
-      <Row className='m-0 p-2'>
-        <Col className='col-md-3 text-start p-0'>
-          <PageTitle>All posts</PageTitle>
-        </Col>
-        <Col className='col-md-2 offset-md-7 text-end p-0'>
-          <Link to='/post/add'>
-            <Button variant='outline-info'>Add Post</Button>
-          </Link>
-        </Col>
-      </Row>
       <Row className='p-2'>
         {posts.map((post) => (
           <Col key={post.id} className='col-md-4 col-12 pt-2 pb-2'>
@@ -28,14 +16,18 @@ const Posts = () => {
                   <strong>Author: </strong>
                   {post.author}
                 </Card.Text>
-                <Card.Text>
+                <Card.Text className='m-0'>
                   <strong>Published: </strong>
                   {dateToStr(post.publishedDate)}
                 </Card.Text>
+                <Card.Text>
+                  <strong>Category: </strong>
+                  {post.category}
+                </Card.Text>
                 <Card.Text>{post.shortDescription}</Card.Text>
-                <Link key={post.id} to={'/post/' + post.id}>
-                  <Button variant='primary'>Read more</Button>
-                </Link>
+                <Button variant='primary' as={Link} to={'/post/' + post.id}>
+                  Read more
+                </Button>
               </Card.Body>
             </Card>
           </Col>

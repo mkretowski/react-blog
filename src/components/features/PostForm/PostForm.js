@@ -7,10 +7,14 @@ import 'react-quill/dist/quill.snow.css';
 import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
 import { useForm } from 'react-hook-form';
+import { useSelector } from 'react-redux';
+import { getAllCategories } from '../../../redux/categoriesRedux';
 
 const PostForm = ({ action, actionText, ...props }) => {
+  const categories = useSelector(getAllCategories);
   const [title, setTitle] = useState(props.title || '');
   const [author, setAuthor] = useState(props.author || '');
+  const [category, setCategory] = useState(props.category || categories[0]);
   const [publishedDate, setPublishedDate] = useState(props.publishedDate || new Date());
   const [shortDescription, setShortDescription] = useState(props.shortDescription || '');
   const [content, setContent] = useState(props.content || '');
@@ -20,7 +24,7 @@ const PostForm = ({ action, actionText, ...props }) => {
     setContentError(!content);
     setDateError(!publishedDate);
     if (content && publishedDate) {
-      action({ title, author, publishedDate, shortDescription, content });
+      action({ title, author, category, publishedDate, shortDescription, content });
     }
   };
   const {
@@ -62,10 +66,20 @@ const PostForm = ({ action, actionText, ...props }) => {
           <DatePicker selected={publishedDate} onChange={(date) => setPublishedDate(date)} />
           {dateError && <small className='d-block form-text text-danger mt-2'>Date can't be empty</small>}
         </Form.Group>
+        <Form.Group className='mb-3 col-md-6 col-12' controlId='category'>
+          <Form.Label>Category</Form.Label>
+          <Form.Select value={category} onChange={(e) => setCategory(e.target.value)}>
+            {categories.map((category) => (
+              <option key={category} value={category}>
+                {category}
+              </option>
+            ))}
+          </Form.Select>
+        </Form.Group>
         <Form.Group className='mb-3' controlId='shortDescription'>
           <Form.Label>Short description</Form.Label>
           <Form.Control
-            {...register('shortDescription', { required: true, minLength: 3 })}
+            {...register('shortDescription', { required: true, minLength: 20 })}
             as='textarea'
             rows={3}
             placeholder='Leave a comment here'
@@ -73,7 +87,7 @@ const PostForm = ({ action, actionText, ...props }) => {
             onChange={(e) => setShortDescription(e.target.value)}
           />
           {errors.shortDescription && (
-            <small className='d-block form-text text-danger mt-2'>Short description is too short (min is 3)</small>
+            <small className='d-block form-text text-danger mt-2'>Short description is too short (min is 20)</small>
           )}
         </Form.Group>
         <Form.Group className='mb-3' controlId='mainContent'>
